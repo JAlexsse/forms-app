@@ -1,0 +1,139 @@
+<h2>Reactive Validations</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off"
+            [formGroup]="registerForm"
+            (ngSubmit)="submitForm()">
+
+            <!-- Name -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">
+                    Name
+                </label>
+                <div class="col-sm-9">
+                    <input type="text"
+                        class="form-control"
+                        formControlName="name"
+                        placeholder="Full name">
+                    <span class="form-text text-danger"
+                        *ngIf="checkValidField( 'name' )">
+                        You must provide your full name
+                    </span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">
+                    Email
+                </label>
+                <div class="col-sm-9">
+                    <input type="email"
+                        class="form-control"
+                        formControlName="email"
+                        placeholder="email@something.com">
+                    <span class="form-text text-danger"
+                        *ngIf="checkValidField( 'email' )">
+                        {{ emailErrorMsg }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">
+                    Username
+                </label>
+                <div class="col-sm-9">
+                    <input type="text"
+                        class="form-control"
+                        formControlName="username"
+                        placeholder="Username">
+                    <span class="form-text text-danger"
+                        *ngIf="checkValidField( 'username' )">
+                        {{ usernameErrorMsg }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">
+                    Password
+                </label>
+                <div class="col-sm-9">
+                    <input type="password"
+                        class="form-control"
+                        formControlName="password"
+                        placeholder="Password">
+                    <span class="form-text text-danger"
+                        *ngIf="checkValidField( 'password' )">
+                        Password should be at between 8 - 15 characters 
+                        long and should contain one number, one upper 
+                        and lower case character and one special character
+                    </span>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">
+                    Confirm Password
+                </label>
+                <div class="col-sm-9">
+                    <input type="password"
+                        class="form-control"
+                        formControlName="confirmpassword"
+                        placeholder="Confirm your password">
+                    <span class="form-text text-danger"
+                        *ngIf="checkValidField( 'confirmpassword' )">
+                        Password does not match
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button 
+                        type="submit"
+                        [disabled]="registerForm.pending"
+                        class="btn btn-primary float-end">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<h2>Form Info</h2>
+<hr>
+<span>Forms status</span>
+<pre>{{ registerForm.status | json }}</pre>
+<hr>
+<span>Forms pending</span>
+<pre>{{ registerForm.pending | json }}</pre>
+<hr>
+<span>Forms errors</span>
+<pre>{{ registerForm.errors | json }}</pre>
+<hr>
+<span>Valid</span>
+<pre>{{ registerForm.valid }}</pre>
+<hr>
+<span>Name</span>
+<pre>{{ registerForm.controls['name'].errors | json }}</pre>
+<hr>
+<span>Email</span>
+<pre>{{ registerForm.controls['email'].errors | json }}</pre>
+<hr>
+<span>Username</span>
+<pre>{{ registerForm.controls['username'].errors | json }}</pre>
+<span>Password</span>
+<pre>{{ registerForm.controls['password'].errors | json }}</pre>
+<span>Confirm password</span>
+<pre>{{ registerForm.controls['password'].errors | json }}</pre>
